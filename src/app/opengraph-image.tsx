@@ -8,6 +8,6 @@ export default function Image() {
   return ogImage({
     // Not the tagline — the footer already carries that. This says what we make.
     eyebrow: "Branding · Websites · Social · Video",
-    title: "A seriously, seriously creative advertising agency.",
+    title: "Outpace your rivals. We’ll hold the line.",
   });
 }

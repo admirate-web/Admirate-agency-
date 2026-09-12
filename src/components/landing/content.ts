@@ -163,14 +163,22 @@ body.loaded #scrollhint{animation:riseIn .45s 1.05s forwards}
 #intro .iwrap{position:relative;z-index:1;max-width:920px;text-align:center}
 /* Sits higher and reads larger than the other eyebrows on the page — this is the
    only one that has to hold the centre of an otherwise empty black field. */
-#intro .tag{font-family:var(--mono);font-size:20px;letter-spacing:.24em;color:var(--red);margin-bottom:56px}
-#intro p.big{font-weight:300;font-size:clamp(21px,3.2vw,38px);line-height:1.5;letter-spacing:-.01em}
+#intro .tag{font-family:var(--mono);font-size:clamp(11px,1.7vw,20px);letter-spacing:.24em;color:var(--red);margin-bottom:56px;text-wrap:balance}
+/* Longer than the copy it replaced, so it is set a step smaller than the old
+   three-line block and leans on a 300/700 weight jump for emphasis instead —
+   at clamp(21px,…) this much text pushed past a phone viewport. */
+#intro p.big{font-weight:300;font-size:clamp(17px,2.35vw,28px);line-height:1.55;letter-spacing:-.01em}
+#intro p.big b{font-weight:700}
 #intro p.big .w{opacity:.1;transition:opacity .4s}
 #intro p.big .w.on{opacity:1}
 #intro .acc{font-weight:700;color:var(--red);white-space:nowrap}
 #intro .strike{position:relative;white-space:nowrap}
 #intro .strike::after{content:"";position:absolute;left:-1%;top:55%;width:102%;height:1.5px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .5s .2s cubic-bezier(.7,0,.3,1)}
 #intro .strike.on::after{transform:scaleX(1)}
+/* The closing aside. Dropped into mono at half the body size so it reads as a
+   footnote rather than a fourth claim — it is a joke, not a promise. Fades in
+   as one unit because splitWords() treats an element child as a single word. */
+#intro .quip{display:block;margin-top:1.6em;font-family:var(--mono);font-size:.52em;font-weight:400;line-height:1.75;letter-spacing:.02em;color:var(--grey)}
 
 /* ============ S3 SERVICES ============ */
 #services{background:var(--paper)}
@@ -180,7 +188,11 @@ body.loaded #scrollhint{animation:riseIn .45s 1.05s forwards}
 /* Ten services, 5-up: two full rows. A 4-up grid would leave a trailing row of
    two, which reads as an unfinished list rather than a deliberate one. Slightly
    wider than before so the five tiles do not get pinched. */
-.svcgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:clamp(10px,1.3vw,16px);width:min(1140px,calc(100% - 2*var(--pad)))}
+/* grid-auto-rows:1fr, with the height:100% already on .svcin, keeps both rows
+   the same height no matter how many lines a name wraps to — "LEAD MANAGEMENT
+   SYSTEMS" takes three where most take one, and without this the top row grew
+   and the two rows stopped reading as one block. */
+.svcgrid{display:grid;grid-template-columns:repeat(5,1fr);grid-auto-rows:1fr;gap:clamp(10px,1.3vw,16px);width:min(1140px,calc(100% - 2*var(--pad)))}
 .svcblock{opacity:0;transform:translateY(26px) scale(.96);transition:opacity .55s cubic-bezier(.2,.8,.2,1),transform .55s cubic-bezier(.2,.8,.2,1)}
 .sec.active .svcblock{opacity:1;transform:none;transition-delay:calc(var(--i)*50ms + .15s)}
 .svcin{height:100%;background:var(--white);border:1px solid var(--line);box-shadow:5px 5px 0 rgba(11,11,12,.05);padding:clamp(14px,1.6vw,20px);display:flex;flex-direction:column;gap:12px;transition:background .25s,border-color .25s,box-shadow .25s,transform .25s;cursor:default}
@@ -409,8 +421,9 @@ body.loaded #scrollhint{animation:riseIn .45s 1.05s forwards}
   #hero .sub{font-size:17px;margin-top:16px}
   #hero .rule{margin-top:24px}
   #scrollhint{bottom:44px}
-  #intro p.big{font-size:19px;line-height:1.45}
-  #intro .tag{margin-bottom:20px}
+  #intro p.big{font-size:16px;line-height:1.55}
+  #intro .tag{margin-bottom:20px;letter-spacing:.18em}
+  #intro .quip{font-size:.68em;margin-top:1.3em}
 
   .phone{height:min(46svh,380px)}
   .reel .rh{font-size:14px}
@@ -559,12 +572,12 @@ export const LANDING_HTML = String.raw`
   </div>
   <div class="inner">
     <h1 id="h1">
-      <span class="w">A</span> <span class="w">seriously,</span> <span class="w">seriously</span>
-      <span class="w mark">creative<svg viewBox="0 0 300 22" preserveAspectRatio="none"><path d="M4 14 C 60 4, 150 20, 296 8"/></svg></span>
-      <span class="w">advertising</span> <span class="w">agency.</span><span class="cursor"></span>
+      <span class="w mark">Outpace<svg viewBox="0 0 300 22" preserveAspectRatio="none"><path d="M4 14 C 60 4, 150 20, 296 8"/></svg></span>
+      <span class="w">your</span> <span class="w">rivals.</span>
+      <span class="w">We’ll</span> <span class="w">hold</span> <span class="w">the</span> <span class="w">line.</span><span class="cursor"></span>
     </h1>
     <div class="rule"></div>
-    <p class="sub">Advertising is part <b>business</b>, part <b>instinct</b>. We work at <b>that edge</b>.</p>
+    <p class="sub"><b>Fast</b>, <b>ruthless</b>, <b>next-gen</b> advertising.</p>
   </div>
   <div id="scrollhint">SCROLL<div class="line"><i></i></div></div>
   <div id="ticker"><div class="track" id="tickTrack"></div></div>
@@ -574,8 +587,8 @@ export const LANDING_HTML = String.raw`
 <section id="intro" class="sec full dark">
   <div class="kglow"></div>
   <div class="iwrap">
-    <div class="tag">WHO WE ARE</div>
-    <p class="big" id="introTxt">We're a full-stack ad agency obsessed with three things: <span class="acc">good design</span>, <span class="acc">user journeys</span> and <span class="acc">quick&nbsp;leads</span>. We build strong advertising material that moves buyers to act — not <span class="strike">social media fluff</span> that just sits there looking pretty.</p>
+    <div class="tag">SOME WORDS YOU’LL PROBABLY SKIP</div>
+    <p class="big" id="introTxt"><span class="strike">Followers</span> do not pay your bills. Good advertising has exactly <span class="acc">one&nbsp;job</span> — to make you <span class="acc">money</span>. We engineer the <b>entire path</b> a stranger takes, from <b>first&nbsp;glance</b> to <b>final&nbsp;purchase</b>, instead of dropping an ad and hoping for the best. We're annoyingly picky, and we dig from the ground up to see what <span class="acc">actually&nbsp;works</span>. The internet mutates daily, so our tactics stay <b>completely up to date</b>.<span class="quip">The creative somehow always works. We just squint at the screen until it feels right.</span></p>
   </div>
 </section>
 
