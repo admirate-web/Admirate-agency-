@@ -31,7 +31,7 @@ const esc = (value: string) =>
 export const HERO_KEYWORD_CSS = String.raw`
 .h1kw{
   display:block;margin-top:clamp(14px,2vh,22px);
-  font-family:var(--mono,'IBM Plex Mono',monospace);
+  font-family:var(--mono,'Lato',sans-serif);
   font-size:clamp(10px,1.05vw,12.5px);font-weight:400;font-stretch:normal;
   letter-spacing:.2em;line-height:1.7;text-transform:uppercase;
   color:var(--red,#E3001B);max-width:34ch;

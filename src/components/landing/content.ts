@@ -10,9 +10,9 @@ export const LANDING_CSS = String.raw`
   --grey:#8A8A8E;
   --line:#E9E9E6;
   --pad:clamp(24px,6vw,96px);
-  --display:var(--font-display),'Archivo',sans-serif;
-  --body:var(--font-body),'Inter',sans-serif;
-  --mono:var(--font-mono),'IBM Plex Mono',monospace;
+  --display:var(--font-display),'Sora',sans-serif;
+  --body:var(--font-body),'Lato',sans-serif;
+  --mono:var(--font-body),'Lato',sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:auto}
@@ -112,7 +112,7 @@ body.loaded #hero .heroart img{animation:riseIn .7s .88s forwards cubic-bezier(.
 @media (max-width:1279px){#hero .heroart{display:none}}
 
 #hero .inner{position:relative;z-index:1;max-width:1080px}
-#hero h1{font-family:var(--display);font-weight:900;font-stretch:112%;font-size:clamp(33px,6.3vw,88px);line-height:1.05;text-transform:uppercase;letter-spacing:-.01em;max-width:16ch}
+#hero h1{font-family:var(--display);font-weight:900;font-stretch:112%;font-size:clamp(33px,5.2vw,72px);line-height:1.05;text-transform:uppercase;letter-spacing:-.01em;max-width:16ch}
 #hero h1 .w{display:inline-block;opacity:0;transform:translateY(40px);filter:blur(6px)}
 body.loaded #hero h1 .w{animation:riseIn .55s forwards cubic-bezier(.2,.8,.2,1);animation-delay:var(--d,0s)}
 #hero h1 .w.split{opacity:1;transform:none;filter:none;animation:none!important}

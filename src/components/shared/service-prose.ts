@@ -47,14 +47,14 @@ export const SERVICE_PROSE_CSS = String.raw`
 .svpb:first-child{margin-top:0}
 
 .svpeb{
-  font-family:var(--mono,'IBM Plex Mono',monospace);font-size:11px;letter-spacing:.22em;
+  font-family:var(--mono,'Lato',sans-serif);font-size:11px;letter-spacing:.22em;
   color:var(--red,#E3001B);text-transform:uppercase;
   display:flex;align-items:center;gap:12px;margin-bottom:18px;
 }
 .svpeb::before{content:"";width:22px;height:1px;background:var(--red,#E3001B);flex:0 0 22px}
 
 .svph{
-  font-family:var(--display,'Archivo',sans-serif);font-weight:800;font-stretch:106%;
+  font-family:var(--display,'Sora',sans-serif);font-weight:800;font-stretch:106%;
   font-size:clamp(24px,3.4vw,42px);line-height:1.1;letter-spacing:-.022em;
   max-width:20ch;color:var(--black,#0B0B0C);
 }
@@ -73,7 +73,7 @@ export const SERVICE_PROSE_CSS = String.raw`
 }
 .svpdi{padding:20px 0;border-top:1px solid var(--line,#E9E9E6)}
 .svpdi h3{
-  font-family:var(--display,'Archivo',sans-serif);font-weight:700;font-size:16px;
+  font-family:var(--display,'Sora',sans-serif);font-weight:700;font-size:16px;
   letter-spacing:-.008em;color:var(--black,#0B0B0C);margin-bottom:7px;
 }
 .svpdi p{font-size:14.5px;line-height:1.65;color:#5a5a5e}
@@ -88,16 +88,16 @@ export const SERVICE_PROSE_CSS = String.raw`
 }
 .svpsi::before{
   content:counter(svpn,decimal-leading-zero);
-  font-family:var(--mono,'IBM Plex Mono',monospace);font-size:11px;letter-spacing:.12em;
+  font-family:var(--mono,'Lato',sans-serif);font-size:11px;letter-spacing:.12em;
   color:var(--red,#E3001B);padding-top:4px;
 }
 .svpsi h3{
-  font-family:var(--display,'Archivo',sans-serif);font-weight:700;
+  font-family:var(--display,'Sora',sans-serif);font-weight:700;
   font-size:clamp(17px,1.9vw,21px);letter-spacing:-.012em;color:var(--black,#0B0B0C);
 }
 .svpwhen{
   display:inline-block;margin-left:12px;vertical-align:2px;
-  font-family:var(--mono,'IBM Plex Mono',monospace);font-weight:400;font-size:10px;
+  font-family:var(--mono,'Lato',sans-serif);font-weight:400;font-size:10px;
   letter-spacing:.16em;text-transform:uppercase;color:var(--grey,#8A8A8E);
   border:1px solid var(--line,#E9E9E6);border-radius:999px;padding:3px 9px;
 }
@@ -108,7 +108,7 @@ export const SERVICE_PROSE_CSS = String.raw`
 .svpq{padding:22px 0 22px clamp(16px,2vw,26px);border-top:1px solid var(--line,#E9E9E6);border-left:2px solid transparent;transition:border-left-color .3s}
 .svpq:hover{border-left-color:var(--red,#E3001B)}
 .svpq h3{
-  font-family:var(--display,'Archivo',sans-serif);font-weight:700;
+  font-family:var(--display,'Sora',sans-serif);font-weight:700;
   font-size:clamp(16px,1.8vw,19px);line-height:1.35;letter-spacing:-.012em;
   color:var(--black,#0B0B0C);max-width:52ch;
 }

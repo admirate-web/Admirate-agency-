@@ -7,7 +7,7 @@ import type { LegalBlock, LegalDoc } from "@/components/legal/docs";
  * One stylesheet for both, because they are the same kind of page: a long,
  * numbered, unillustrated read that has to stay legible on a phone. The site's
  * display type is used for the h1 only — setting fifteen clause headings in
- * 900-weight Archivo would fight the text rather than organise it.
+ * 900-weight display type would fight the text rather than organise it.
  *
  * The :root block is repeated from the other pages rather than imported,
  * because RawPage mounts exactly one stylesheet per route and these pages do
@@ -24,9 +24,9 @@ export const LEGAL_CSS = String.raw`
   --grey:#8A8A8E;
   --line:#E9E9E6;
   --pad:clamp(24px,6vw,96px);
-  --display:var(--font-display),'Archivo',sans-serif;
-  --body:var(--font-body),'Inter',sans-serif;
-  --mono:var(--font-mono),'IBM Plex Mono',monospace;
+  --display:var(--font-display),'Sora',sans-serif;
+  --body:var(--font-body),'Lato',sans-serif;
+  --mono:var(--font-body),'Lato',sans-serif;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:var(--body);background:var(--paper);color:var(--black);overflow-x:hidden;-webkit-font-smoothing:antialiased}

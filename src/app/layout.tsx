@@ -1,14 +1,14 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Script from "next/script";
-import { Archivo, Inter, IBM_Plex_Mono } from "next/font/google";
+import { Sora, Lato } from "next/font/google";
 import { SITE } from "@/lib/seo";
 import { organizationSchema, websiteSchema, ld } from "@/lib/schema";
 
 /**
  * The type stack, self-hosted.
  *
- * These were three families on one `<link rel="stylesheet">` to
+ * These were once three families on one `<link rel="stylesheet">` to
  * fonts.googleapis.com. That link is render-blocking and cross-origin, so on a
  * throttled mobile connection the browser could not paint until it had done a
  * DNS lookup, a TLS handshake and a round trip to Google — then discovered the
@@ -29,35 +29,28 @@ import { organizationSchema, websiteSchema, ld } from "@/lib/schema";
  * shape if a font ever fails to load.
  */
 
-/* The variable-width axis build, not the default. The display type sets
-   `font-stretch` between 62% and 125% on nearly every page, and a static
-   Archivo would silently ignore all of it — `axes: ["wdth"]` is what keeps
-   that working. `wght` comes with the variable font and must not be listed. */
-const archivo = Archivo({
+/* Headings are Sora Bold, and only the 700 file is loaded: the page
+   stylesheets ask for 800/900 on their headings, and with a single face the
+   browser resolves every one of those to Bold without touching each rule.
+   Sora has no width axis, so the pages' `font-stretch` values are ignored. */
+const sora = Sora({
   subsets: ["latin"],
-  axes: ["wdth"],
+  weight: "700",
   display: "swap",
   variable: "--font-display",
 });
 
-/* Variable font: no `weight`, so the whole 100–900 range is available and the
-   pages' 300/400/500/600/700/800 all resolve without extra files. */
-const inter = Inter({
+/* Body text and the small uppercase labels (the pages' `--mono`). Lato is not
+   a variable font, so the weights are named: the pages' 500 resolves to 400,
+   600 and up to 700. */
+const lato = Lato({
   subsets: ["latin"],
+  weight: ["300", "400", "700"],
   display: "swap",
   variable: "--font-body",
 });
 
-/* Not a variable font on Google Fonts, so the weights are named. Only the two
-   the site actually uses — every extra weight here is another file to ship. */
-const ibmPlexMono = IBM_Plex_Mono({
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  display: "swap",
-  variable: "--font-mono",
-});
-
-const fontVars = `${archivo.variable} ${inter.variable} ${ibmPlexMono.variable}`;
+const fontVars = `${sora.variable} ${lato.variable}`;
 
 /**
  * GA4 measurement ID.

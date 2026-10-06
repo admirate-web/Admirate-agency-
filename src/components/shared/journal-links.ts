@@ -40,7 +40,7 @@ const esc = (value: string) =>
  * which carries on both. Legible in every state, dark background or not.
  */
 export const JOURNAL_CSS = String.raw`
-.svcj{margin-top:clamp(28px,4vh,48px);padding-top:20px;border-top:1px solid rgba(128,128,132,.32);font-family:var(--mono,'IBM Plex Mono',monospace);font-size:11px;letter-spacing:.1em;line-height:1.9;color:#78787c}
+.svcj{margin-top:clamp(28px,4vh,48px);padding-top:20px;border-top:1px solid rgba(128,128,132,.32);font-family:var(--mono,'Lato',sans-serif);font-size:11px;letter-spacing:.1em;line-height:1.9;color:#78787c}
 .svcj b{font-weight:400;letter-spacing:.2em;margin-right:10px;text-transform:uppercase}
 .svcj a{color:var(--red,#E3001B);text-decoration:none;border-bottom:1px solid rgba(227,0,27,.42);padding-bottom:1px;transition:border-color .2s}
 .svcj a:hover{border-bottom-color:var(--red,#E3001B)}
