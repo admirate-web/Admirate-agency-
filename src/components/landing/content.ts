@@ -341,15 +341,12 @@ body.loaded #scrollhint{animation:riseIn .45s 1.05s forwards}
 #brands .shead{position:static;padding:0 var(--pad);margin-bottom:clamp(36px,5vw,64px)}
 .client-grid{list-style:none;margin:0;padding:0 var(--pad);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
 .client-cell{min-width:0;min-height:clamp(160px,14vw,220px);padding:clamp(24px,3vw,44px);display:flex;align-items:center;justify-content:center;background:var(--white);border-right:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;transition:background-color .28s ease}
-.client-cell img{display:block;width:min(74%,220px);height:auto;max-height:88px;object-fit:contain;scale:var(--s,1);filter:grayscale(1) saturate(0) contrast(1.18);transform:scale(1);transition:filter .28s ease,transform .28s cubic-bezier(.2,.8,.2,1)}
-.client-cell img.inv{filter:invert(1) grayscale(1) saturate(0) contrast(1.18)}
+.client-cell img{display:block;width:min(74%,220px);height:auto;max-height:88px;object-fit:contain;scale:var(--s,1);transform:scale(1);transition:transform .28s cubic-bezier(.2,.8,.2,1)}
+/* Every mark in its own colours on white. Zythum is drawn white on transparent,
+   so it is inverted to black rather than given a black cell. */
+.client-cell img.inv{filter:invert(1)}
 @media (hover:hover) and (pointer:fine){
-  .client-cell:hover img{filter:none;transform:scale(1.05)}
-  .client-cell.is-inverted:hover{background:var(--black)}
-}
-@media (hover:none){
-  .client-cell img,.client-cell img.inv{filter:none}
-  .client-cell.is-inverted{background:var(--black)}
+  .client-cell:hover img{transform:scale(1.05)}
 }
 
 /* ============ S9 CTA ============ */

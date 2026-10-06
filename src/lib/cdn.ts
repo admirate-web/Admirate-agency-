@@ -13,8 +13,9 @@ export const asset = (path: string) =>
 export const video = (path: string) =>
   `${CDN_HOST}${STORAGE_PATH}/videos/${encodeURIComponent(path).replace(/%2F/g, "/")}`;
 
+/* A path starting with "/" is a file in public/, passed through as-is. */
 export const clientLogo = (path: string) =>
-  `${CDN_HOST}${STORAGE_PATH}/client%20logos/${encodeURIComponent(path).replace(/%2F/g, "/")}`;
+  path.startsWith("/") ? path : `${CDN_HOST}${STORAGE_PATH}/client%20logos/${encodeURIComponent(path).replace(/%2F/g, "/")}`;
 
 /* The bucket is literally named "creatives new" — the space is part of the name. */
 export const creative = (path: string) =>

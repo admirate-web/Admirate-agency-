@@ -159,12 +159,12 @@ body.idhover #idcur{width:56px;height:56px;background:rgba(227,0,27,.08)}
 
 /* ============ 3 — BRANDS WE'VE CRAFTED ============ */
 #brands .bsub{margin-top:14px}
-/* Fixed column counts rather than auto-fit. Twelve marks divide evenly by
-   6/4/3/2, so every row fills at every breakpoint — auto-fit left whatever did
-   not fit the last row as a bare stretch of the wall's own background, which
-   read as a rendering fault rather than as space. */
-#brands .bwall{margin-top:clamp(32px,5vh,56px);display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
-.btile{position:relative;background:#fff;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;padding:clamp(18px,2.4vw,30px);overflow:hidden;transition:background .4s ease}
+/* Fixed column counts rather than auto-fit. The rules between tiles are each
+   tile's outline drawn into the 1px gap, not the wall's background showing
+   through it, so a short last row leaves white space inside the frame — a grey
+   wall background there read as a rendering fault rather than as space. */
+#brands .bwall{margin-top:clamp(32px,5vh,56px);display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:#fff;border:1px solid var(--line)}
+.btile{position:relative;background:#fff;outline:1px solid var(--line);aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;padding:clamp(18px,2.4vw,30px);overflow:hidden;transition:background .4s ease}
 /* The marks are real files of assorted proportions, so each is contained
    inside the tile rather than sized to it, and --s lifts the ones whose file
    carries its own padding up to the same optical size as the rest. */
@@ -176,8 +176,7 @@ body.idhover #idcur{width:56px;height:56px;background:rgba(227,0,27,.08)}
    transparent disappears, and inverting to compensate turns a two-colour mark
    into a colour negative. The lift is the hover now, and the marks stay exactly
    as their owners drew them. */
-.btile:hover{background:var(--paper)}
-.btile:hover img{transform:scale(calc(var(--s,1) * 1.06))}
+.btile:hover{background:var(--paper)}.btile:hover img{transform:scale(calc(var(--s,1) * 1.06))}
 
 /* ============ 4 — CLOSE ============ */
 #close{position:relative;overflow:hidden}

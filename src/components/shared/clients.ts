@@ -14,7 +14,10 @@
 export type ClientLogo = {
   /** Brand name. Used as the img alt, and it is the only text the wall carries. */
   name: string;
-  /** Object name in the "client logos" bucket — see lib/cdn.ts `clientLogo`. */
+  /**
+   * Object name in the "client logos" bucket, or a "/"-rooted path into
+   * public/ — see lib/cdn.ts `clientLogo`.
+   */
   file: string;
   /**
    * A white-on-transparent mark. It is invisible on a light surface as drawn,
@@ -47,6 +50,11 @@ export const CLIENT_LOGOS: ClientLogo[] = [
   { name: "EUI", file: "EUI LOGO.webp" },
   { name: "Hitex SportExpo", file: "sportex_logo.webp", scale: 1.45 },
   { name: "AA", file: "AA Logo.webp" },
+  /* Served from public/client-logos: the bucket copies are JPEGs on solid
+     black (Chubb's is entirely black), so these are transparent versions. */
+  { name: "Chubb", file: "/client-logos/chubb_logo.webp" },
+  { name: "Experian", file: "/client-logos/experian_logo.webp" },
+  { name: "Daspalla", file: "/client-logos/daspalla_logo.webp" },
 ];
 
 /** The landing marquee's two rows, which scroll in opposite directions. */
