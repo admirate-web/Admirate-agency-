@@ -178,7 +178,7 @@ body.loaded #scrollhint{animation:riseIn .45s 1.05s forwards}
 /* The closing aside. Dropped into mono at half the body size so it reads as a
    footnote rather than a fourth claim — it is a joke, not a promise. Fades in
    as one unit because splitWords() treats an element child as a single word. */
-#intro .quip{display:block;margin-top:1.6em;font-family:var(--mono);font-size:.52em;font-weight:400;line-height:1.75;letter-spacing:.02em;color:var(--grey)}
+#intro .quip{display:block;margin-top:1.6em;font-family:var(--mono);font-size:.66em;font-weight:700;line-height:1.6;letter-spacing:.02em;color:var(--grey)}
 
 /* ============ S3 SERVICES ============ */
 #services{background:var(--paper)}
@@ -420,7 +420,7 @@ body.loaded #scrollhint{animation:riseIn .45s 1.05s forwards}
   #scrollhint{bottom:44px}
   #intro p.big{font-size:16px;line-height:1.55}
   #intro .tag{margin-bottom:20px;letter-spacing:.18em}
-  #intro .quip{font-size:.68em;margin-top:1.3em}
+  #intro .quip{font-size:.84em;margin-top:1.3em}
 
   .phone{height:min(46svh,380px)}
   .reel .rh{font-size:14px}
@@ -585,7 +585,7 @@ export const LANDING_HTML = String.raw`
   <div class="kglow"></div>
   <div class="iwrap">
     <div class="tag">SOME WORDS YOU’LL PROBABLY SKIP</div>
-    <p class="big" id="introTxt"><span class="strike">Followers</span> do not pay your bills. Good advertising has exactly <span class="acc">one&nbsp;job</span> — to make you <span class="acc">money</span>. We engineer the <b>entire path</b> a stranger takes, from <b>first&nbsp;glance</b> to <b>final&nbsp;purchase</b>, instead of dropping an ad and hoping for the best. We're annoyingly picky, and we dig from the ground up to see what <span class="acc">actually&nbsp;works</span>. The internet mutates daily, so our tactics stay <b>completely up to date</b>.<span class="quip">The creative somehow always works. We just squint at the screen until it feels right.</span></p>
+    <p class="big" id="introTxt"><span class="strike">Followers</span> do not pay your bills. Good advertising has exactly <span class="acc">one&nbsp;job</span> and that is to make <span class="acc">money</span>. We engineer the <b>entire path</b> a stranger takes, from <b>first&nbsp;glance</b> to <b>final&nbsp;purchase</b>, instead of dropping an ad and hoping for the best. We're annoyingly picky, and we dig from the ground up to see what <span class="acc">actually&nbsp;works</span>. The internet mutates daily, so our tactics stay <b>completely up to date</b>.<span class="quip">The creative somehow always works. We just squint at the screen until it feels right.</span></p>
   </div>
 </section>
 
