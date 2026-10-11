@@ -17,7 +17,6 @@ export const LANDING_CSS = String.raw`
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:auto}
 body{font-family:var(--body);background:var(--white);color:var(--black);overflow-x:hidden;-webkit-font-smoothing:antialiased}
-body.locked{overflow:hidden;height:100vh}
 ::selection{background:var(--red);color:var(--white)}
 
 /* ============ SHARED SECTION SYSTEM ============ */
@@ -38,42 +37,6 @@ h2.light{font-family:var(--body);font-weight:500;font-size:clamp(26px,3.4vw,46px
 #dots{position:fixed;right:clamp(12px,2vw,24px);top:50%;transform:translateY(-50%);z-index:120;display:flex;flex-direction:column;gap:12px;mix-blend-mode:difference}
 #dots button{width:6px;height:6px;border-radius:6px;border:none;background:rgba(255,255,255,.45);cursor:pointer;padding:0;transition:height .3s,background .3s}
 #dots button.on{height:20px;background:var(--red)}
-
-/* ============ LOADER ============ */
-#loader{position:fixed;inset:0;z-index:1000;pointer-events:none}
-/* Set by the inline script in app/layout.tsx before the first paint, when the
-   visitor is returning Home rather than arriving or reloading. Hiding it here
-   rather than in init() is what prevents a flash of the black terminal. */
-html.no-loader #loader{display:none}
-/* .6s, was .9s. The curtain is the last thing between the visitor and the
-   page, so its duration is added to LCP in full — and at this easing the
-   reveal reads the same at two-thirds the length. */
-#loader .half{position:absolute;left:0;width:100%;height:50.5%;background:var(--black);transition:transform .6s cubic-bezier(.76,0,.24,1)}
-#loader .half.top{top:0}
-#loader .half.bot{bottom:0}
-#loader.open .half.top{transform:translateY(-101%)}
-#loader.open .half.bot{transform:translateY(101%)}
-#terminal{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:min(780px,92vw);font-family:var(--mono);font-size:clamp(17px,3.6vw,28px);color:#CFCFCF;z-index:2;transition:opacity .3s}
-#loader.open #terminal{opacity:0}
-#terminal .ln{white-space:nowrap;overflow:hidden;height:1.7em;line-height:1.7em}
-#terminal .ln .txt{border-right:2px solid transparent}
-#terminal .ln.typing .txt{border-right:2px solid var(--red)}
-#terminal .ln.err .txt{color:var(--red);font-weight:500}
-#terminal .ln.ok .txt{color:#fff}
-#bar{margin-top:22px;height:8px;width:100%;background:#222;opacity:0}
-#bar.show{opacity:1}
-#bar i{display:block;height:100%;width:0;background:var(--red)}
-/* .32s, and it has to stay under BAR_WAIT in landing/init.ts — that constant
-   is how long the sequence holds before the curtain opens, so a fill slower
-   than the wait would be cut off part-way. */
-#bar.fill i{width:100%;transition:width .32s cubic-bezier(.7,0,.3,1)}
-#loader.glitch #terminal{animation:glitch .28s steps(3) 1}
-@keyframes glitch{
-  0%{transform:translate(-50%,-50%)}
-  33%{transform:translate(calc(-50% - 6px),calc(-50% + 3px)) skewX(2deg)}
-  66%{transform:translate(calc(-50% + 5px),calc(-50% - 4px)) skewX(-2deg)}
-  100%{transform:translate(-50%,-50%)}
-}
 
 /* ============ S1 HERO ============ */
 #hero{background:var(--paper);display:flex;flex-direction:column;justify-content:center;padding:0 var(--pad)}
@@ -445,8 +408,6 @@ body.loaded #scrollhint{animation:riseIn .45s 1.05s forwards}
   #dots button{width:5px;height:5px}
   #dots button.on{height:16px}
 
-  #terminal{width:92vw;font-size:13px}
-
   /* Two-up service blocks, laid out as a row so the label reads beside the icon. */
   .svcgrid{grid-template-columns:1fr 1fr;gap:10px;width:100%}
   .svcin{flex-direction:row;align-items:center;gap:9px;padding:10px 12px}
@@ -524,8 +485,6 @@ body.loaded #scrollhint{animation:riseIn .45s 1.05s forwards}
   .stagewrap{position:static;padding:40px 20px}
   .shead{position:static;padding:0 var(--pad);margin-bottom:20px}
   .full{height:auto;min-height:70vh;padding-top:90px;padding-bottom:90px}
-  #loader{display:none}
-  body.locked{overflow:auto;height:auto}
   #hero h1 .w,#hero .kicker,#hero .sub,#hero .rule,#scrollhint,.ch{opacity:1;transform:none;filter:none}
   .rise,.tile,.wnav,.wcards .c,.svcblock{opacity:1!important;transform:none!important}
   .whero{clip-path:none!important}
@@ -540,19 +499,6 @@ ${FOOTER_CSS}
 `;
 
 export const LANDING_HTML = String.raw`
-
-<!-- LOADER -->
-<div id="loader">
-  <div class="half top"></div>
-  <div class="half bot"></div>
-  <div id="terminal">
-    <div class="ln" data-text="> booting admirate.in _"></div>
-    <div class="ln" data-text="> loading campaign assets............ 100%"></div>
-    <div class="ln err" data-text="> ERROR 404: boring_ads not found"></div>
-    <div class="ln ok" data-text="> fix applied: ads_that_convert.exe ✓"></div>
-    <div id="bar"><i></i></div>
-  </div>
-</div>
 
 <div id="dots"></div>
 

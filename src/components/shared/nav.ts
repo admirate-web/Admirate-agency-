@@ -175,8 +175,7 @@ export const NAV_CSS = String.raw`
   overflow-y:auto;overscroll-behavior:contain;
 }
 .smenu.open{opacity:1;visibility:visible;pointer-events:auto}
-/* Locks the page behind the panel. A distinct class from the landing loader's
-   body.locked, so the two can never clobber each other. */
+/* Locks the page behind the panel. */
 body.smopen{overflow:hidden}
 
 .smenu .smtop{
