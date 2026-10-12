@@ -547,7 +547,7 @@ ${legend}
    who never sees it play (reduced motion) is shown. */
 export const CRM_HTML = `<!-- 6 — HOPE TRUST CRM -->
 <section class="dgs dark" id="dcrm" data-bg="#FFFFFF" data-label="Hope Trust CRM">
-  <h2 class="dgh up" style="--d:.08s">Chat, booking, CRM — <em>live</em> at Hope Trust.</h2>
+  <h2 class="dgh up" style="--d:.08s">Built for care.<br>Driven by <em>impact</em>.</h2>
   <p class="dgp up" style="--d:.14s">The website was the start. For Hope Trust India we also built what happens next: a WhatsApp assistant that answers the moment someone writes, and an intake console where their team sees every enquiry, how urgent it is, and who to call next.</p>
   <div class="crm-stage ${CRM_BEATS.map((b) => b.cls).join(" ")} up" id="crmStage" style="--d:.2s">
     <div class="crm-phone" id="crmPhone">
