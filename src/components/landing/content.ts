@@ -123,14 +123,14 @@ body.loaded #scrollhint{animation:riseIn .45s 1.05s forwards}
 #intro{background:var(--black);color:var(--white);display:flex;align-items:center;justify-content:center;padding:0 var(--pad)}
 #intro .kglow{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:72vmin;height:72vmin;background:radial-gradient(circle,rgba(227,0,27,.11),transparent 65%);pointer-events:none;animation:glowpulse 11s ease-in-out infinite alternate}
 @keyframes glowpulse{from{opacity:.5}to{opacity:1}}
-#intro .iwrap{position:relative;z-index:1;max-width:920px;text-align:center}
+#intro .iwrap{position:relative;z-index:1;max-width:1040px;text-align:center}
 /* Sits higher and reads larger than the other eyebrows on the page — this is the
    only one that has to hold the centre of an otherwise empty black field. */
-#intro .tag{font-family:var(--mono);font-size:clamp(11px,1.7vw,20px);letter-spacing:.24em;color:var(--red);margin-bottom:56px;text-wrap:balance}
+#intro .tag{font-family:var(--mono);font-size:clamp(13px,2vw,24px);letter-spacing:.24em;color:var(--red);margin-bottom:56px;text-wrap:balance}
 /* Longer than the copy it replaced, so it is set a step smaller than the old
    three-line block and leans on a 300/700 weight jump for emphasis instead —
    at clamp(21px,…) this much text pushed past a phone viewport. */
-#intro p.big{font-weight:300;font-size:clamp(17px,2.35vw,28px);line-height:1.55;letter-spacing:-.01em}
+#intro p.big{font-weight:300;font-size:clamp(20px,2.8vw,34px);line-height:1.55;letter-spacing:-.01em}
 #intro p.big b{font-weight:700}
 #intro p.big .w{opacity:.1;transition:opacity .4s}
 #intro p.big .w.on{opacity:1}
@@ -141,7 +141,7 @@ body.loaded #scrollhint{animation:riseIn .45s 1.05s forwards}
 /* The closing aside. Dropped into mono at half the body size so it reads as a
    footnote rather than a fourth claim — it is a joke, not a promise. Fades in
    as one unit because splitWords() treats an element child as a single word. */
-#intro .quip{display:block;margin-top:1.6em;font-family:var(--mono);font-size:.52em;font-weight:400;line-height:1.75;letter-spacing:.02em;color:var(--grey)}
+#intro .quip{display:block;margin-top:1.6em;font-family:var(--mono);font-size:.66em;font-weight:700;line-height:1.6;letter-spacing:.02em;color:var(--white)}
 
 /* ============ S3 SERVICES ============ */
 #services{background:var(--paper)}
@@ -381,9 +381,9 @@ body.loaded #scrollhint{animation:riseIn .45s 1.05s forwards}
   #hero .sub{font-size:17px;margin-top:16px}
   #hero .rule{margin-top:24px}
   #scrollhint{bottom:44px}
-  #intro p.big{font-size:16px;line-height:1.55}
+  #intro p.big{font-size:19px;line-height:1.5}
   #intro .tag{margin-bottom:20px;letter-spacing:.18em}
-  #intro .quip{font-size:.68em;margin-top:1.3em}
+  #intro .quip{font-size:.84em;margin-top:1.3em}
 
   .phone{height:min(46svh,380px)}
   .reel .rh{font-size:14px}
@@ -531,7 +531,7 @@ export const LANDING_HTML = String.raw`
   <div class="kglow"></div>
   <div class="iwrap">
     <div class="tag">SOME WORDS YOU’LL PROBABLY SKIP</div>
-    <p class="big" id="introTxt"><span class="strike">Followers</span> do not pay your bills. Good advertising has exactly <span class="acc">one&nbsp;job</span> — to make you <span class="acc">money</span>. We engineer the <b>entire path</b> a stranger takes, from <b>first&nbsp;glance</b> to <b>final&nbsp;purchase</b>, instead of dropping an ad and hoping for the best. We're annoyingly picky, and we dig from the ground up to see what <span class="acc">actually&nbsp;works</span>. The internet mutates daily, so our tactics stay <b>completely up to date</b>.<span class="quip">The creative somehow always works. We just squint at the screen until it feels right.</span></p>
+    <p class="big" id="introTxt"><span class="strike">Followers</span> do not pay your bills. Good advertising has exactly <span class="acc">one&nbsp;job</span> and that is to make <span class="acc">money</span>. We engineer the <b>entire path</b> a stranger takes, from <b>first&nbsp;glance</b> to <b>final&nbsp;purchase</b>, instead of dropping an ad and hoping for the best. We're annoyingly picky, and we dig from the ground up to see what <span class="acc">actually&nbsp;works</span>. The internet mutates daily, so our tactics stay <b>completely up to date</b>.<span class="quip">The creative somehow always works. We just squint at the screen until it feels right.</span></p>
   </div>
 </section>
 

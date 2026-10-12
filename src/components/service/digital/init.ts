@@ -7,8 +7,10 @@
  *
  * THE WORK is the shared client showcase (shared/showcase.ts) — it owns its
  * own listeners and teardown, so all this page does is start it and stop it.
+ * The Hope Trust CRM section (crm.mjs) is driven the same way.
  */
 import { initShowcase } from "@/components/shared/showcase";
+import { initCrm } from "@/components/service/digital/crm.mjs";
 
 export default function initDigital() {
 let _dead=false,_rafId=0;
@@ -106,11 +108,13 @@ _rafId=requestAnimationFrame(loop);
 /* This page has no custom cursor, so the rail needs no re-binding when the
    dashboard roster replaces it. */
 const stopShowcase=initShowcase();
+const stopCrm=initCrm();
 
 return function cleanup(){
   _dead=true;
   cancelAnimationFrame(_rafId);
   stopShowcase();
+  stopCrm();
   _timers.forEach(clearTimeout);
   _obs.forEach(o=>{ try{ o.disconnect(); }catch(e){} });
   _win.forEach(([t,h])=>removeEventListener(t,h));
