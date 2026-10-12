@@ -5,6 +5,9 @@
  *   JOURNEY  a five-node path from visit to CRM, drawn in as the section
  *            arrives, with the integrations that carry each step beneath it
  *   BUILT    the four things a build is held to, as a plain pillar row
+ *   CRM      the journey past the site, at Hope Trust: their WhatsApp
+ *            assistant answering a hello, beside their intake console
+ *            (crm.mjs)
  */
 
 import { HERO_KEYWORD_CSS, heroKeyword } from "@/components/shared/hero-keyword";
@@ -14,6 +17,7 @@ import {
   serviceProse,
 } from "@/components/shared/service-prose";
 import { showcaseCss, SHOWCASE_HTML } from "@/components/shared/showcase";
+import { CRM_CSS, CRM_HTML } from "./crm.mjs";
 
 import { NAP_HTML, LEGAL_HTML } from "@/lib/seo";
 
@@ -120,8 +124,9 @@ body.smopen{overflow:hidden}
    The showcase brings its own styles. .dgs.in is what this page puts on a
    section once it is on screen, so that is the hook its entrance hangs off. */
 ${showcaseCss(".dgs.in")}
+${CRM_CSS}
 
-/* ============ 6 — CLOSE ============ */
+/* ============ 7 — CLOSE ============ */
 #dclose .nlist{margin-top:clamp(26px,4vh,46px);border-top:1px solid rgba(255,255,255,.14)}
 .nrow{display:flex;align-items:center;gap:clamp(12px,2vw,26px);padding:clamp(12px,1.9vh,20px) clamp(6px,1.4vw,16px);border-bottom:1px solid rgba(255,255,255,.14);text-decoration:none;color:#fff;position:relative;overflow:hidden}
 .nrow::before{content:"";position:absolute;inset:0;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.16,1,.3,1)}
@@ -286,6 +291,8 @@ export const DIGITAL_HTML = String.raw`
   <p class="dgp up" style="--d:.1s">Pick a client and their site loads here. Every one of them is live right now — open it and judge the work yourself.</p>
   ${SHOWCASE_HTML}
 </section>
+
+${CRM_HTML}
 
 ${serviceProse("digital", { bg: "#FAFAF8", label: "Digital in full" })}
 
