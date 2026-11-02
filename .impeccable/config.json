@@ -1,0 +1,17 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "src/components/shared/showcase.ts"
+        ],
+        "createdAt": "2026-11-02T10:17:22.487Z",
+        "reason": "Claude triage: #bshot src is assigned at runtime by selectClient(); pre-existing markup"
+      }
+    ]
+  }
+}

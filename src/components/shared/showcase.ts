@@ -41,14 +41,6 @@ export type ShowcaseClient = {
    projects in it. */
 export const SHOWCASE_CLIENTS: ShowcaseClient[] = [
   {
-    name: "SPORTEX",
-    tag: "Sports expo",
-    url: "sportex.in",
-    shot: "/shots/sportex.jpeg",
-    desc: "India's largest sports, fitness and wellness expo. Built to hold up under launch-week traffic, with visitor registration and exhibitor enquiries on one clean path.",
-    chips: ["WEB", "EVENT", "REGISTRATION"],
-  },
-  {
     name: "PATIL GROUP",
     tag: "Railway infrastructure",
     url: "patilgroup.com",
@@ -71,6 +63,30 @@ export const SHOWCASE_CLIENTS: ShowcaseClient[] = [
     shot: "/shots/oss.jpeg",
     desc: "Art, movement and mindful living. A venue whose calendar is the product — events, classes and workshops up front, and booking a space never more than one click away.",
     chips: ["WEB", "EVENTS", "BOOKINGS"],
+  },
+  {
+    name: "SAMYOGA STUDIO",
+    tag: "Yoga & pilates",
+    url: "samyogastudio.in",
+    shot: "/shots/samyoga.jpeg",
+    desc: "Yoga and Pilates in Hyderabad, taught as a practice rather than a workout. Class timings, memberships and the teacher behind them on one calm page, with WhatsApp a tap away.",
+    chips: ["WEB", "CLASSES", "MEMBERSHIPS"],
+  },
+  {
+    name: "SPORTEX",
+    tag: "Sports expo",
+    url: "sportex.in",
+    shot: "/shots/sportex.jpeg",
+    desc: "India's largest sports, fitness and wellness expo. Built to hold up under launch-week traffic, with visitor registration and exhibitor enquiries on one clean path.",
+    chips: ["WEB", "EVENT", "REGISTRATION"],
+  },
+  {
+    name: "PEWEC",
+    tag: "Women's education",
+    url: "pewec-pptt.org",
+    shot: "/shots/pewec.jpeg",
+    desc: "Princess Esin Women's Educational Centre, Hyderabad. Education and vocational skills for women from every background — courses, events and an enquiry, said simply.",
+    chips: ["WEB", "EDUCATION", "ENQUIRIES"],
   },
   {
     name: "SOUTH GLASS",
