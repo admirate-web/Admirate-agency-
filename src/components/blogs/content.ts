@@ -361,7 +361,14 @@ export const postHtml = (p: Post) => {
       <h1>${esc(p.title)}</h1>
       <div class="ameta">
         <span class="atag">${esc(p.tag)}</span>
-        ${AUTHOR ? `<span class="aby">BY ${esc(AUTHOR.name.toUpperCase())}</span><span class="dot"></span>` : ""}<time datetime="${esc(p.date)}">${fmtDate(p.date)}</time><span class="dot"></span><span>${readingMinutes(p)} MIN READ</span>
+        ${AUTHOR ? `<span class="aby">BY ${esc(AUTHOR.name.toUpperCase())}</span><span class="dot"></span>` : ""}<time datetime="${esc(p.date)}">${fmtDate(p.date)}</time><span class="dot"></span><span>${readingMinutes(p)} MIN READ</span>${
+          /* Shown only when a post has genuinely been revised, and from the
+             same field the schema's dateModified reads, so the markup never
+             claims a revision the reader cannot see. */
+          p.updated
+            ? `<span class="dot"></span><span>UPDATED <time datetime="${esc(p.updated)}">${fmtDate(p.updated)}</time></span>`
+            : ""
+        }
       </div>
     </div>
     <div class="abanner ${p.v}">
@@ -373,6 +380,11 @@ export const postHtml = (p: Post) => {
 
 <article class="wrap">
   <div class="abody">
+    ${
+      /* The two-sentence answer to the title's question, ahead of the essay.
+         See `answer` in posts.ts. */
+      p.answer ? `<p>${esc(p.answer)}</p>` : ""
+    }
     ${p.body.map(renderBlock).join("\n    ")}
   </div>
 
