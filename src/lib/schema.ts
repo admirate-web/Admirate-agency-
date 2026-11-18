@@ -71,8 +71,11 @@ export const ld = (data: unknown) =>
  * dashboard). This is a static schema object rendered in the root layout, so it
  * cannot read them without making the whole layout async for one string.
  * Anyone changing the floor or ceiling of the INR card should change this line.
+ *
+ * It had drifted: the floor read ₹18,000 when the card's cheapest plan, Website
+ * Care, was ₹14,000 a month. Re-checked against the live card on 2026-11-17.
  */
-const PRICE_RANGE = "₹18000-₹359000";
+const PRICE_RANGE = "₹14000-₹359000";
 
 export const organizationSchema = {
   "@context": "https://schema.org",
