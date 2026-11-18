@@ -1,6 +1,7 @@
 import test, { after, before } from "node:test";
 import assert from "node:assert/strict";
 import { spawn } from "node:child_process";
+import { readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -151,6 +152,100 @@ test("video production renders the supplied showreel in the existing player", as
     html,
     /<source src="https:\/\/mshehtxywddtdxxkbnuu\.supabase\.co\/storage\/v1\/object\/public\/videos\/admirate%20summary%203%20\(1\)\.mp4" type="video\/mp4">/,
   );
+});
+
+test("homepage server HTML names every service tile and client brand", async () => {
+  /* Crawlers that do not run JavaScript (GPTBot, ClaudeBot, PerplexityBot)
+     read only this response. Both grids used to be filled by the page script,
+     so to them the homepage listed no services and no clients. */
+  const response = await fetch(`${baseUrl}/`);
+  const html = await response.text();
+  assert.equal(response.status, 200);
+
+  const services = html.match(/id="svcgrid">([\s\S]*?)<a class="svall/);
+  assert.ok(services, "service grid markup is missing");
+  const tiles = [...services[1].matchAll(/<div class="nm">([^<]+)<\/div>/g)].map(
+    (match) => match[1].replace(/&amp;/g, "&").toLowerCase(),
+  );
+  assert.deepEqual(tiles, [
+    "branding",
+    "websites",
+    "social media",
+    "print ads",
+    "lead management systems",
+    "packaging",
+    "video production",
+    "brand collaterals",
+    "reels & shorts",
+    "digital automations",
+  ]);
+
+  const clientsSource = readFileSync(
+    resolve(projectRoot, "src/components/shared/clients.ts"),
+    "utf8",
+  );
+  const clientNames = [...clientsSource.matchAll(/name: "([^"]+)"/g)].map(
+    (match) => match[1],
+  );
+  assert.ok(clientNames.length >= 10, "expected the client registry to parse");
+
+  const clients = html.match(/id="clientGrid"[^>]*>([\s\S]*?)<\/ul>/);
+  assert.ok(clients, "client grid markup is missing");
+  const alts = [...clients[1].matchAll(/alt="([^"]+)"/g)].map((match) => match[1]);
+  assert.deepEqual(alts, clientNames);
+});
+
+test("homepage states what ADMIRATE is, what it sells, who for, and an FAQ that matches its markup", async () => {
+  const html = await (await fetch(`${baseUrl}/`)).text();
+
+  const section = html.match(/<section[^>]*id="svp"[^>]*>([\s\S]*?)<\/section>/);
+  assert.ok(section, "plain-language section is missing from the server HTML");
+  const body = section[1];
+
+  for (const slug of [
+    "identity",
+    "design",
+    "social-media",
+    "digital",
+    "video-production",
+    "brand-collaterals",
+  ]) {
+    assert.match(body, new RegExp(`href="/services/${slug}"`), `no link to /services/${slug}`);
+  }
+  for (const client of ["South Glass", "Patil Group", "Hope Trust India"]) {
+    assert.ok(body.includes(client), `client not named: ${client}`);
+  }
+  assert.match(body, /href="\/pricing"/);
+  assert.match(body, /href="\/contact"/);
+
+  const decode = (s) =>
+    s.replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&#x27;|&#39;/g, "'");
+  const visibleQuestions = [
+    ...body.matchAll(/<div class="svpq"><h3>([^<]+)<\/h3>/g),
+  ].map((match) => decode(match[1]));
+  assert.equal(visibleQuestions.length, 5, "expected a five-question FAQ");
+
+  const ldBlocks = [
+    ...html.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g),
+  ].flatMap((match) => JSON.parse(match[1]));
+  const faq = ldBlocks.find((block) => block["@type"] === "FAQPage");
+  assert.ok(faq, "homepage FAQPage markup is missing");
+  assert.deepEqual(
+    faq.mainEntity.map((q) => q.name),
+    visibleQuestions,
+    "the markup must ask exactly the questions the page shows",
+  );
+  for (const q of faq.mainEntity) {
+    assert.doesNotMatch(q.acceptedAnswer.text, /<[^>]+>/, "answers are plain text");
+  }
+
+  /* Measured on the raw response, as a crawler that runs no script sees it. */
+  const text = html
+    .replace(/<head[\s\S]*?<\/head>/, " ")
+    .replace(/<(script|style|noscript|svg)\b[\s\S]*?<\/\1>/g, " ")
+    .replace(/<[^>]+>/g, " ");
+  const words = text.split(/\s+/).filter((w) => /[A-Za-z0-9]/.test(w));
+  assert.ok(words.length >= 900, `homepage server HTML has ${words.length} words`);
 });
 
 test("full and compact public footers link to the HTML sitemap", async () => {

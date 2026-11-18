@@ -1,5 +1,11 @@
 import { FOOTER_CSS, footerHtml } from "@/components/shared/footer";
-import { logoPhase, optimized } from "@/lib/cdn";
+import { SERVICE_PROSE_CSS } from "@/components/shared/service-prose";
+import { HOME_PLAIN_CSS, homePlainHtml } from "@/components/landing/plain";
+import type { HomePrices } from "@/lib/home-prices";
+import { CLIENT_LOGOS } from "@/components/shared/clients";
+import { renderClientGrid } from "@/components/landing/clientGrid.mjs";
+import { renderServiceGrid } from "@/components/landing/serviceGrid.mjs";
+import { clientLogo, logoPhase, optimized } from "@/lib/cdn";
 
 export const LANDING_CSS = String.raw`
 :root{
@@ -110,6 +116,12 @@ body.loaded #hero .rule{animation:ruleIn .45s .72s forwards cubic-bezier(.7,0,.3
    instead — whatever is largest here sets the number. */
 #hero .sub{max-width:640px;margin-top:20px;font-weight:300;font-size:clamp(19px,2.3vw,29px);color:#232326;line-height:1.5;letter-spacing:-.01em}
 #hero .sub b{font-weight:700}
+/* The plain statement of what the studio is and where. The headline and the
+   line above are brand voice and name neither a service nor the city, which
+   left the page with nothing a search engine or an AI assistant could quote
+   back as "what is ADMIRATE". Caption-sized so it reads as a descriptor, not a
+   third headline; no entrance animation, for the same reason .sub has none. */
+#hero .what{max-width:640px;margin-top:18px;font-family:var(--mono);font-size:clamp(10.5px,.95vw,12.5px);font-weight:400;letter-spacing:.18em;line-height:1.8;text-transform:uppercase;color:#55555A}
 #scrollhint{position:absolute;bottom:58px;left:50%;transform:translateX(-50%);z-index:2;text-align:center;font-family:var(--mono);font-size:9px;letter-spacing:.34em;color:var(--grey);opacity:0}
 body.loaded #scrollhint{animation:riseIn .45s 1.05s forwards}
 #scrollhint .line{width:1px;height:30px;background:#DADAD6;margin:8px auto 0;position:relative;overflow:hidden}
@@ -379,6 +391,7 @@ body.loaded #scrollhint{animation:riseIn .45s 1.05s forwards}
 
   #hero{padding:0 var(--pad) 40px}
   #hero .sub{font-size:17px;margin-top:16px}
+  #hero .what{margin-top:14px;letter-spacing:.14em}
   #hero .rule{margin-top:24px}
   #scrollhint{bottom:44px}
   #intro p.big{font-size:19px;line-height:1.5}
@@ -496,9 +509,17 @@ body.loaded #scrollhint{animation:riseIn .45s 1.05s forwards}
 
 /* ---- site footer (shared/footer.ts) ---- */
 ${FOOTER_CSS}
+
+/* ---- plain-language block (landing/plain.ts, on the service-prose styles) ---- */
+${SERVICE_PROSE_CSS}
+${HOME_PLAIN_CSS}
 `;
 
-export const LANDING_HTML = String.raw`
+/**
+ * A function rather than a constant because one answer in the plain-language
+ * block quotes the live rate card, which page.tsx reads on the server.
+ */
+export const landingHtml = (prices: HomePrices | null) => String.raw`
 
 <div id="dots"></div>
 
@@ -521,6 +542,7 @@ export const LANDING_HTML = String.raw`
     </h1>
     <div class="rule"></div>
     <p class="sub"><b>Fast</b>, <b>ruthless</b>, <b>next-gen</b> advertising.</p>
+    <p class="what">Design and marketing agency in Hyderabad for branding, websites, social media and video.</p>
   </div>
   <div id="scrollhint">SCROLL<div class="line"><i></i></div></div>
   <div id="ticker"><div class="track" id="tickTrack"></div></div>
@@ -542,7 +564,7 @@ export const LANDING_HTML = String.raw`
     <h2 class="light rise" style="--rd:.12s">Everything your brand needs to be seen.</h2>
   </div>
   <div class="stagewrap">
-    <div class="svcgrid" id="svcgrid"></div>
+    <div class="svcgrid" id="svcgrid">${renderServiceGrid()}</div>
     <!-- Lands after the last tile: ten blocks stagger at 50ms each from .15s,
          so the grid has settled by .65s. -->
     <a class="svall rise" style="--rd:.75s" href="/services">View all services <span class="ar">→</span></a>
@@ -698,9 +720,9 @@ export const LANDING_HTML = String.raw`
   <div class="shead">
     <h2 class="light rise" style="--rd:.12s">Brands we've worked with</h2>
   </div>
-  <ul class="client-grid" id="clientGrid" aria-label="Client brands"></ul>
+  <ul class="client-grid" id="clientGrid" aria-label="Client brands">${renderClientGrid(CLIENT_LOGOS, clientLogo)}</ul>
 </section>
-
+${homePlainHtml(prices)}
 <!-- S9 FOOTER (replaces the old CTA — see shared/footer.ts) -->
 <section id="cta" class="sec dark">
   ${footerHtml()}
