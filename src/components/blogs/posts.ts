@@ -23,6 +23,16 @@ export type Post = {
    */
   updated?: string;
   /**
+   * The direct answer to the question the title asks, in two sentences.
+   *
+   * Rendered as the article's first paragraph, ahead of the editorial opening.
+   * Search engines and AI assistants lift a short, complete answer far more
+   * readily than they summarise an essay, and a reader who only wanted the
+   * answer gets it without scrolling. Plain text only: no numbers the article
+   * does not back up, and no links (the body carries those).
+   */
+  answer?: string;
+  /**
    * Thumbnail treatment. Still meaningful with artwork in place: it picks the
    * gradient scrim laid over the image, so the tag chip stays legible whether
    * the art underneath is a white-background vector or a dark photo.
@@ -51,8 +61,9 @@ export type Post = {
 const WPM = 200;
 
 export const wordCount = (p: Post) =>
-  p.body
-    .flatMap((b) => (b.t === "list" ? b.c : [b.c]))
+  /* The answer is on the page, so it is in the count — the same rule that
+     made this a measurement in the first place. */
+  [p.answer ?? "", ...p.body.flatMap((b) => (b.t === "list" ? b.c : [b.c]))]
     .join(" ")
     .split(/\s+/)
     .filter(Boolean).length;
@@ -68,11 +79,19 @@ export const readingMinutes = (p: Post) =>
 export const POSTS: Post[] = [
   {
     slug: "why-your-website-is-slow",
-    title: "Your website is slow, and it is costing you the enquiry.",
+    /* Titles were rewritten on 2026-11-16 as the question each post answers.
+       The originals were headlines ("Your website is slow, and it is costing
+       you the enquiry.") and in three months the twelve posts drew 22 search
+       impressions between them, because nobody types a headline into Google.
+       `img` keeps each old wording: it is the object name in the bucket. */
+    title: "Why is your website slow? The three causes, in order",
     excerpt:
       "Website speed is not a developer problem you fix at the end. It is a design decision you make at the start — and Google now measures it on your behalf.",
     tag: "WEBSITES",
     date: "2026-07-14",
+    updated: "2026-11-16",
+    answer:
+      "Most slow websites are slow for three reasons, in this order: oversized images, too many font files, and third-party scripts such as chat widgets and trackers. None of them needs a rebuild to fix, only someone to count what each one costs and remove what is not earning its place.",
     v: "v3",
     img: "Your website is slow, and it is costing you the enquiry..jpg",
     body: [
@@ -156,11 +175,14 @@ export const POSTS: Post[] = [
   },
   {
     slug: "what-a-logo-actually-costs",
-    title: "What you are actually paying for when you buy a logo.",
+    title: "Logo design cost in India: what you actually pay for",
     excerpt:
       "The same brief comes back at wildly different prices, and the difference is almost never the drawing. Here is what moves the number, and what you get for it.",
     tag: "BRANDING",
     date: "2026-07-10",
+    updated: "2026-11-16",
+    answer:
+      "There is no single price for a logo in India, because the same brief can mean a mark on its own or a full identity system. Four things set the price: the scope, how many directions are explored, how many real applications are tested, and which files and rights you own at the end.",
     v: "v1",
     img: "What you are actually paying for when you buy a logo.1.jpg",
     imgHero: "What you are actually paying for when you buy a logo.2.jpg",
@@ -234,11 +256,14 @@ export const POSTS: Post[] = [
   },
   {
     slug: "packaging-gets-three-seconds",
-    title: "Your packaging gets three seconds, and forty rivals.",
+    title: "What makes packaging design work on the shelf?",
     excerpt:
       "A shelf is the most competitive media your brand will ever buy. Packaging that works is designed for the glance, the grab and the rival beside it.",
     tag: "BRANDING",
     date: "2026-07-07",
+    updated: "2026-11-16",
+    answer:
+      "Packaging works when a shopper can tell what the product is, whose it is and why to pick it, in about three seconds, with rival packs on either side. The only honest test is a printed mock-up placed between the two brands it will actually sit beside, viewed from three metres away.",
     v: "v2",
     img: "Your packaging gets three seconds, and forty rivals.1.jpg",
     imgHero: "Your packaging gets three seconds, and forty rivals.2.jpg",
@@ -312,11 +337,14 @@ export const POSTS: Post[] = [
   },
   {
     slug: "what-social-media-management-actually-is",
-    title: "What a social media manager actually does all month.",
+    title: "What does a social media agency actually do all month?",
     excerpt:
       "Not posting. Posting is the last twenty minutes of a long process — and the reason most brand accounts stall is that everything before it was skipped.",
     tag: "SOCIAL",
     date: "2026-07-03",
+    updated: "2026-11-16",
+    answer:
+      "A social media agency spends most of the month on work nobody sees: deciding what the account is for, studying the audience, writing hooks and reading the results honestly. Making and publishing the posts is the smallest part, and it only pays when every post gives the viewer somewhere to go next.",
     v: "v4",
     img: "What a social media manager actually does all month..jpg",
     body: [
@@ -390,11 +418,14 @@ export const POSTS: Post[] = [
   },
   {
     slug: "when-to-rebrand",
-    title: "How to tell it is your brand, and not your business.",
+    title: "When should a business rebrand?",
     excerpt:
       "A rebrand fixes a perception problem, not a product, price or process problem. Knowing which one you have will save you a great deal of money.",
     tag: "IDENTITY",
     date: "2026-06-30",
+    updated: "2026-11-16",
+    answer:
+      "Rebrand when the problem is perception: people misunderstand what you sell, you have outgrown the name or the mark, the identity cannot be used where you need it, or buyers cannot tell you from competitors. If people understand you perfectly and still choose someone else, the problem is the product, the price or the sales process, and a new logo will not fix it.",
     v: "v1",
     img: "How to tell it is your brand, and not your business..png",
     body: [
@@ -463,11 +494,14 @@ export const POSTS: Post[] = [
   },
   {
     slug: "what-a-brand-film-costs",
-    title: "What actually costs money in a brand film.",
+    title: "Brand film cost in India: where the money goes",
     excerpt:
       "Not the camera. The budget for a video is decided by decisions made weeks before anyone shoots — and by how many times you change your mind afterwards.",
     tag: "CREATIVE",
     date: "2026-06-27",
+    updated: "2026-11-16",
+    answer:
+      "A brand film is priced by time, people and decisions, not by the camera. Four things set the budget: the script, the number of shoot days, who appears on screen, and the edit, including every extra cut made for reels, pre-roll and feeds.",
     v: "v3",
     img: "What actually costs money in a brand film..jpg",
     body: [
@@ -536,11 +570,14 @@ export const POSTS: Post[] = [
   },
   {
     slug: "your-logo-has-half-a-second",
-    title: "Your logo has half a second. That's the whole brief.",
+    title: "What makes a good logo? It has half a second to work",
     excerpt:
       "A mark doesn't get studied — it gets glimpsed. Here's how we design for the half-second it actually gets, and why that changes every decision.",
     tag: "IDENTITY",
     date: "2026-06-24",
+    updated: "2026-11-16",
+    answer:
+      "A good logo is one that is recognised in about half a second, in the smallest and worst place it will ever appear. Test it at 16 pixels, in a single black, on a bad photocopy and over a busy photograph; if it survives those, it works.",
     v: "v1",
     img: "Your logo has half a second. That's the whole brief.jpg",
     body: [
@@ -588,11 +625,14 @@ export const POSTS: Post[] = [
   },
   {
     slug: "the-homepage-scavenger-hunt",
-    title: "Stop making your homepage a scavenger hunt",
+    title: "What should a homepage include? One promise, one step",
     excerpt:
       "Most homepages hide the two things a visitor came for. A simple structural fix — one promise, one next step — usually outperforms a redesign.",
     tag: "WEBSITES",
     date: "2026-06-10",
+    updated: "2026-11-16",
+    answer:
+      "A homepage has to answer two questions fast: what is this, and what do I do next. Put one plain-language promise on the first screen and one clearly marked next step, then repeat that step down the page.",
     v: "v2",
     img: "Stop making your homepage a scavenger hunt.jpg",
     body: [
@@ -644,11 +684,14 @@ export const POSTS: Post[] = [
   },
   {
     slug: "where-the-eye-actually-goes",
-    title: "Where the eye actually goes (and why your CTA is invisible)",
+    title: "Why is nobody clicking your CTA? Where the eye goes",
     excerpt:
       "Reading an ad isn't a linear act. The eye lands, travels, and rests in a fairly predictable path — and most layouts fight that path instead of using it.",
     tag: "CREATIVE",
     date: "2026-05-28",
+    updated: "2026-11-16",
+    answer:
+      "A call to action gets ignored when it sits somewhere the eye has already left. The eye lands on the highest-contrast element or a face, jumps a few times and comes to rest, so the action belongs at the end of that path, with contrast and empty space steering the way to it.",
     v: "v4",
     img: "Where the eye actually goes (and why your CTA is invisible).jpg",
     body: [
@@ -687,15 +730,14 @@ export const POSTS: Post[] = [
   },
   {
     slug: "reels-that-route",
-    /* Shortened from "A reel that gets views isn't the same as a reel that
-       gets leads" — 63 characters, the one post still past the ~60 Google
-       renders even with the brand suffix dropped. Same claim, keyword first.
-       `img` keeps the old wording: it is the object name in the bucket. */
-    title: "Reels that get views aren't reels that get leads.",
+    title: "Why do reels get views but no leads?",
     excerpt:
       "Views are a vanity metric until the video routes somebody somewhere. The difference is usually the last three seconds, not the first three.",
     tag: "SOCIAL",
     date: "2026-05-14",
+    updated: "2026-11-16",
+    answer:
+      "Reels get views without leads when the video ends and the viewer has nowhere to go. Give every reel an exit that matches how warm the viewer is: the profile for a first meeting, a page for a specific problem, or a one-tap enquiry for people who are ready.",
     v: "v3",
     img: "A reel that gets views isn't the same as a reel that gets leads.jpg",
     body: [
@@ -733,11 +775,14 @@ export const POSTS: Post[] = [
   },
   {
     slug: "consistency-is-the-strategy",
-    title: "Consistency isn't a brand rule. It's the entire strategy.",
+    title: "Why does brand consistency matter? It is the strategy",
     excerpt:
       "Recognition compounds. Every time you look like yourself, you deposit; every time you don't, you spend. Most brands are quietly running a deficit.",
     tag: "BRANDING",
     date: "2026-04-30",
+    updated: "2026-11-16",
+    answer:
+      "Brand consistency matters because recognition only builds when repeated exposures look like each other. Every on-brand asset adds to that recognition and every off-brand one spends it, and it only pays if the brand also looks unlike its competitors.",
     v: "v1",
     img: "Consistency isn't a brand rule. It's the entire strategy.png",
     body: [
@@ -771,11 +816,14 @@ export const POSTS: Post[] = [
   },
   {
     slug: "the-brief-is-the-work",
-    title: "The brief is the work. The design is just what's left.",
+    title: "How to write a design brief: five questions to answer",
     excerpt:
       "Almost every project that goes badly went badly at the start. Here are the questions we ask before anyone opens a design tool.",
     tag: "PROCESS",
     date: "2026-04-16",
+    updated: "2026-11-16",
+    answer:
+      "A design brief should answer five questions: who the work is for, what they believe now and should believe afterwards, what single action counts as success, where the work will be seen, and what would count as failure in three months. A brief that cannot be failed cannot be judged, and the project gets revised forever on taste.",
     v: "v2",
     img: "The brief is the work. The design is just what's left.png",
     body: [

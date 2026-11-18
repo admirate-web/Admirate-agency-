@@ -4,7 +4,7 @@ import { pageMeta, SITE } from "@/lib/seo";
 import { breadcrumbSchema, faqSchema, ld, AREA_SERVED } from "@/lib/schema";
 
 export const metadata: Metadata = pageMeta({
-  title: "Websites & Digital in Hyderabad",
+  title: "Website Design & Development Company in Hyderabad",
   description:
     "Websites that load fast and convert — designed, built and shipped end to end, with performance, structure and search foundations handled properly.",
   path: "/services/digital",

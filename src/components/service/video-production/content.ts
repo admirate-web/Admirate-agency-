@@ -298,7 +298,7 @@ export const VIDEO_HTML = String.raw`
 <section class="vs dark" id="vhero" data-bg="#0B0B0C" data-label="Video">
   <div>
     <div class="crumb"><a href="/">Home</a><span>/</span><a href="/services">Services</a><span>/</span><b>Video Production</b></div>
-    <h1>${heroLine("FILMS THAT", 0.15)}<br>${heroLine("DO A JOB", 0.42, true)}${heroKeyword("Video Production in Hyderabad")}</h1>
+    <h1>${heroLine("FILMS THAT", 0.15)}<br>${heroLine("DO A JOB", 0.42, true)}${heroKeyword("Video Production Company in Hyderabad")}</h1>
     <p class="vp">Anything can be filmed. What gets watched is decided in the edit — the hook that stops the scroll, the pacing that holds it, the story that lands.</p>
   </div>
   <div class="apwrap">

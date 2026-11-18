@@ -132,7 +132,7 @@ export const footerHtml = () => `
     <div class="afcols">
       ${col(
         "Sitemap",
-        `<a href="/" data-h>Home</a><a href="/services" data-h>Services</a><a href="/blogs" data-h>Blogs</a><a href="/start-project" data-h>Start a project</a>`,
+        `<a href="/" data-h>Home</a><a href="/services" data-h>Services</a><a href="/blogs" data-h>Blogs</a><a href="/start-project" data-h>Start a project</a><a href="/contact" data-h>Contact</a>`,
       )}
       ${col(
         "Services",

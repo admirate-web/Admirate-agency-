@@ -330,7 +330,7 @@ export const SOCIAL_HTML = String.raw`
     <div class="sgrid">
       <div>
         <div class="crumb"><a href="/">Home</a><span>/</span><a href="/services">Services</a><span>/</span><b>Social Media</b></div>
-        <h1>${heroLine("MADE TO", 0.15)}<br>${heroLine("CONVERT", 0.4, true)}${heroKeyword("Social Media & Reels in Hyderabad")}</h1>
+        <h1>${heroLine("MADE TO", 0.15)}<br>${heroLine("CONVERT", 0.4, true)}${heroKeyword("Social Media Marketing Agency in Hyderabad")}</h1>
         <p class="smp">Reels, creatives and campaigns produced to send people somewhere — not to fill a content calendar and quietly disappear.</p>
       </div>
       <div class="pwrap">${phone("hreel", true)}</div>

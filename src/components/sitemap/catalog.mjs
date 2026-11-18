@@ -21,6 +21,7 @@ export function buildSitemapGroups({ services, posts, legalDocs }) {
         { label: "Pricing", href: "/pricing" },
         { label: "Journal", href: "/blogs" },
         { label: "Start a Project", href: "/start-project" },
+        { label: "Contact", href: "/contact" },
       ],
     },
     {

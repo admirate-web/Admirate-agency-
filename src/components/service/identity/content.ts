@@ -321,7 +321,7 @@ export const IDENTITY_HTML = String.raw`
   <div class="mgrid" aria-hidden="true"></div>
   <div class="mleft">
     <div class="crumb"><a href="/">Home</a><span>/</span><a href="/services">Services</a><span>/</span><b>Identity</b></div>
-    <h1>${heroLine("BUILT TO", 0.15)}<br>${heroLine("BE KNOWN", 0.42, true)}${heroKeyword("Brand Identity & Logo Design in Hyderabad")}</h1>
+    <h1>${heroLine("BUILT TO", 0.15)}<br>${heroLine("BE KNOWN", 0.42, true)}${heroKeyword("Branding & Logo Design Agency in Hyderabad")}</h1>
     <p class="idp msub">Great logos don't explain themselves. They're recognised in an instant, remembered after one look, and simple enough to be understood at a glance.</p>
   </div>
   <div class="mstage">

@@ -46,6 +46,11 @@ export function buildLlmsSections({
           originUrl(origin, "/start-project"),
           "Share a project brief with ADMIRATE.",
         ),
+        resource(
+          "Contact",
+          originUrl(origin, "/contact"),
+          "ADMIRATE's phone and WhatsApp number, email address, location, and social profiles.",
+        ),
       ],
     },
     {

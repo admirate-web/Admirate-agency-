@@ -4,7 +4,7 @@ import { pageMeta, SITE } from "@/lib/seo";
 import { breadcrumbSchema, faqSchema, ld, AREA_SERVED } from "@/lib/schema";
 
 export const metadata: Metadata = pageMeta({
-  title: "Social Media & Reels in Hyderabad",
+  title: "Social Media Marketing Agency in Hyderabad",
   description:
     "Reels, creatives and campaigns made to convert, not just post — scripted, shot and cut in-house, with every piece routed somewhere useful.",
   path: "/services/social-media",

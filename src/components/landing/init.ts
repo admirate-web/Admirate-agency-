@@ -1,13 +1,14 @@
 // @ts-nocheck
 
-import { clientLogo } from "@/lib/cdn";
-import { CLIENT_LOGOS } from "@/components/shared/clients";
-import { renderClientGrid } from "@/components/landing/clientGrid.mjs";
 import { initFooter } from "@/components/shared/footer";
 
 export default function initLanding(){
 let _dead=false, _rafId=0;
 const _winListeners=[];
+/* Was used below but never declared, so the window 'load' handler threw a
+   ReferenceError on every visit, and cleanup() threw before it could
+   disconnect the observer and remove the listeners. */
+const _timers=[];
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 /* Below 600px tall the CSS drops the sticky-scrub and lets the sections flow
    (landscape phones, SE-class screens). The scrub writes would fight those
@@ -17,11 +18,8 @@ const staticScrub = reduced || matchMedia('(max-height: 600px)').matches;
 /* ---------- content fills ---------- */
 const words = 'BRANDING — LOGO DESIGN — WEBSITES — PACKAGING — SOCIAL MEDIA — VIDEO PRODUCTION — PRINT ADS — BRAND COLLATERALS — LEAD MANAGEMENT SYSTEMS — CHATBOTS — ';
 document.getElementById('tickTrack').textContent = (words + words).repeat(2);
-/* Client marks. The shared registry also feeds the identity page; this page
-   maps it once into a static grid. `inv` identifies the white Zythum artwork,
-   while `scale` corrects source files with unusually generous empty padding. */
-const clientGrid = document.getElementById('clientGrid');
-clientGrid.innerHTML = renderClientGrid(CLIENT_LOGOS, clientLogo);
+/* The client grid and the service tiles are no longer filled here: content.ts
+   renders both into the server HTML (see landing/serviceGrid.mjs for why). */
 
 /* ---------- hero: per-letter split ----------
    Halved from 0.18 / 0.16 / 0.026 / 0.05.
@@ -119,14 +117,6 @@ const clamp=(v,a,b)=>Math.min(b,Math.max(a,v));
 const seg=(p,a,b)=>clamp((p-a)/(b-a),0,1);
 const ease=t=>t<.5?2*t*t:1-Math.pow(-2*t+2,2)/2;
 
-/* The ten services, in the order they are shown. Ten is deliberate: the grid is
-   5-up on desktop and 2-up on mobile, so both land on full rows.
-   Every name here must have a matching key in SVCICON below. */
-const SVC=['Branding','Websites','Social media','Print ads','Lead management systems','Packaging','Video production','Brand collaterals','Reels & shorts','Digital automations'];
-const SVCICON={'Branding': '<circle cx="12" cy="12" r="8"/><path d="M12 4v16M4 12h16"/>', 'Websites': '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 9h18"/>', 'Packaging': '<path d="M3 8l9-5 9 5-9 5-9-5z"/><path d="M3 8v8l9 5 9-5V8"/><path d="M12 13v8"/>', 'Social media': '<path d="M21 12a9 9 0 11-4-7.5"/><path d="M21 3v6h-6"/>', 'Video production': '<rect x="3" y="6" width="13" height="12" rx="2"/><path d="M16 10l5-3v10l-5-3"/>', 'Print ads': '<path d="M6 9V3h12v6"/><rect x="4" y="9" width="16" height="8" rx="1"/><path d="M6 17h12v4H6z"/>', 'Brand collaterals': '<rect x="4" y="4" width="16" height="6" rx="1"/><rect x="4" y="14" width="16" height="6" rx="1"/>', 'Lead management systems': '<path d="M3 5h18l-7 8v6l-4 2v-8z"/>', 'Reels & shorts': '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 4v16M16 4v16M3 9h5M16 9h5M3 15h5M16 15h5"/>', 'Digital automations': '<rect x="3" y="3" width="18" height="18" rx="3"/><path d="M13 7l-4 6h3l-1 4 4-6h-3l1-4z"/>'};
-/* The grid is static once built — CSS reveals it on .sec.active. */
-const svcgrid=document.getElementById('svcgrid');
-svcgrid.innerHTML=SVC.map((n,i)=>`<div class="svcblock" style="--i:${i}"><div class="svcin"><div class="srow"><span class="n">${String(i+1).padStart(2,'0')}</span><span class="ico"><svg viewBox="0 0 24 24">${SVCICON[n]}</svg></span></div><div class="nm">${n.toUpperCase()}</div></div></div>`).join('');
 
 const frames=[...document.querySelectorAll('.frame')];
 const chan=document.getElementById('chan'), tvprog=document.getElementById('tvprog'), tcode=document.getElementById('tcode');
