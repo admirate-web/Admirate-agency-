@@ -4,7 +4,7 @@ import { pageMeta, SITE } from "@/lib/seo";
 import { breadcrumbSchema, faqSchema, ld, AREA_SERVED } from "@/lib/schema";
 
 export const metadata: Metadata = pageMeta({
-  title: "Advertising & Design in Hyderabad",
+  title: "Graphic Design & Advertising Agency in Hyderabad",
   /* 160 characters previously — just past what Google renders. */
   description:
     "Advertising and design placed where the eye actually goes: campaign creative, print, digital and art direction built for how people really look.",

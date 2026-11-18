@@ -5,7 +5,7 @@ import { pageMeta, SITE } from "@/lib/seo";
 import { breadcrumbSchema, ld } from "@/lib/schema";
 
 export const metadata: Metadata = pageMeta({
-  title: "Journal",
+  title: "Branding & Marketing Journal",
   /* 112 characters previously, which left most of the snippet unused. The
      city earns its place here: this is a page that can rank locally. */
   description:

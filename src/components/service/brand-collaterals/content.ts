@@ -320,7 +320,7 @@ export const COLLAT_HTML = String.raw`
 <section class="cs" id="chero" data-bg="#FBF7F1" data-label="Collaterals">
   <div>
     <div class="crumb"><a href="/">Home</a><span>/</span><a href="/services">Services</a><span>/</span><b>Brand Collaterals</b></div>
-    <h1>${heroLine("THE PHYSICAL", 0.15)}<br>${heroLine("PROOF", 0.48, true)}${heroKeyword("Brand Collaterals in Hyderabad")}</h1>
+    <h1>${heroLine("THE PHYSICAL", 0.15)}<br>${heroLine("PROOF", 0.48, true)}${heroKeyword("Brochure & Brand Collateral Design in Hyderabad")}</h1>
     <p class="cp">Brochures, cards, packaging, signage — everything your brand hands over, carrying the same face it shows everywhere else.</p>
   </div>
   <div>

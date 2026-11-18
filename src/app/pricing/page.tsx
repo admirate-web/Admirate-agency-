@@ -8,7 +8,8 @@ import { getPricing } from "@/lib/pricing-data";
 import { buildView } from "@/lib/pricing-view";
 
 export const metadata: Metadata = pageMeta({
-  title: "Pricing",
+  /* Was "Pricing" alone, which only ever matched the brand search. */
+  title: "Website & Digital Retainer Pricing in India",
   description:
     "ADMIRATE's published rates for digital retainers, website development and website care — shown in your own currency, with no quote request required.",
   path: "/pricing",

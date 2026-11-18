@@ -270,7 +270,7 @@ export const DESIGN_HTML = String.raw`
 <section class="dgs" id="dhero" data-bg="#FAFAF8" data-label="Eye level">
   <div class="retic" aria-hidden="true"></div>
   <div class="crumb"><a href="/">Home</a><span>/</span><a href="/services">Services</a><span>/</span><b>Design</b></div>
-  <h1>${heroLine("PLACED WHERE", 0.15)}<br>${heroLine("THE EYE GOES", 0.5, true)}${heroKeyword("Advertising & Design in Hyderabad")}</h1>
+  <h1>${heroLine("PLACED WHERE", 0.15)}<br>${heroLine("THE EYE GOES", 0.5, true)}${heroKeyword("Graphic Design & Advertising Agency in Hyderabad")}</h1>
   <p class="dgp">Purposeful, minimal, functional — design where every element exists for a reason, placed to carry the eye from first glance to action.</p>
 </section>
 

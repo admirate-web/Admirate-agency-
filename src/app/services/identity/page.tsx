@@ -11,7 +11,7 @@ import { breadcrumbSchema, faqSchema, ld, AREA_SERVED } from "@/lib/schema";
  * there is exactly one route serving /services/identity.
  */
 export const metadata: Metadata = pageMeta({
-  title: "Brand Identity & Logo Design in Hyderabad",
+  title: "Branding & Logo Design Agency in Hyderabad",
   /* 166 characters previously — Google cut it mid-clause. */
   description:
     "Logos and brand identity built to be recognised in half a second: mark, typography, colour and the rules that keep your brand looking like itself.",

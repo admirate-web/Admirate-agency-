@@ -4,7 +4,7 @@ import { pageMeta, SITE } from "@/lib/seo";
 import { breadcrumbSchema, faqSchema, ld, AREA_SERVED } from "@/lib/schema";
 
 export const metadata: Metadata = pageMeta({
-  title: "Brand Collaterals in Hyderabad",
+  title: "Brochure & Brand Collateral Design in Hyderabad",
   description:
     "Business cards, brand guidelines, packaging, merch and signage — the physical proof of a strong identity, specified and produced to hold up in the hand.",
   path: "/services/brand-collaterals",

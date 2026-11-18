@@ -243,7 +243,7 @@ export const DIGITAL_HTML = String.raw`
 <section class="dgs" id="dhero" data-bg="#FAFAF8" data-label="Digital">
   <div>
     <div class="crumb"><a href="/">Home</a><span>/</span><a href="/services">Services</a><span>/</span><b>Digital</b></div>
-    <h1>${heroLine("SITES THAT", 0.15)}<br>${heroLine("EARN THEIR KEEP", 0.44, true)}${heroKeyword("Websites & Digital in Hyderabad")}</h1>
+    <h1>${heroLine("SITES THAT", 0.15)}<br>${heroLine("EARN THEIR KEEP", 0.44, true)}${heroKeyword("Website Design & Development Company in Hyderabad")}</h1>
     <p class="dgp">We don't just build websites — we build frictionless customer journeys. From the first click to the enquiry in your CRM, every step is designed to convert.</p>
   </div>
   <div class="brw" id="hbrw">

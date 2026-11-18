@@ -4,7 +4,7 @@ import { pageMeta, SITE } from "@/lib/seo";
 import { breadcrumbSchema, faqSchema, ld, AREA_SERVED } from "@/lib/schema";
 
 export const metadata: Metadata = pageMeta({
-  title: "Video Production in Hyderabad",
+  title: "Video Production Company in Hyderabad",
   description:
     "Films, ads and brand stories, scripted and shot in-house — built around what the film has to achieve, and cut for every place it has to play.",
   path: "/services/video-production",
