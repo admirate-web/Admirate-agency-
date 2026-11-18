@@ -18,6 +18,7 @@ const expectedPublicPaths = [
   "/pricing",
   "/blogs",
   "/start-project",
+  "/contact",
   "/services/identity",
   "/services/design",
   "/services/social-media",

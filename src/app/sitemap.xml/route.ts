@@ -3,37 +3,32 @@ import { POSTS } from "@/components/blogs/posts";
 import { SERVICE_LIST } from "@/components/service/registry";
 import { LEGAL_DOCS } from "@/components/legal/docs";
 import { SITE } from "@/lib/seo";
+import { pageUpdated } from "@/components/sitemap/page-dates.mjs";
 
-/**
- * Move this date only when the static public pages meaningfully change.
- *
- * It went stale once already: the tier 1 and tier 2 SEO fixes shipped on
- * 2026-08-05/06 rewrote every title, meta description and service-page schema
- * block, and this constant still read 2026-07-27. Search Console showed the
- * consequence — Google's last crawl of the service pages was 2026-07-23, so
- * none of that work had been seen, and the sitemap was actively reporting that
- * nothing had changed since before it landed.
- *
- * If you change page copy, titles, descriptions or schema, this moves with it.
- */
-const PAGES_UPDATED = new Date("2026-08-06");
+/* Each static page's `lastModified` comes from page-dates.mjs, one date per
+   page. If you change a page's copy, title, description or schema, move that
+   page's date there — and only that page's. */
+
+/** A post's last genuine revision, or its publish date if it has none. */
+const postModified = (post: (typeof POSTS)[number]) =>
+  new Date(post.updated ?? post.date);
 
 const sitemapEntries = (): MetadataRoute.Sitemap => [
   {
     url: SITE.url,
-    lastModified: PAGES_UPDATED,
+    lastModified: pageUpdated("/"),
     changeFrequency: "monthly",
     priority: 1,
   },
   {
     url: `${SITE.url}/services`,
-    lastModified: PAGES_UPDATED,
+    lastModified: pageUpdated("/services"),
     changeFrequency: "monthly",
     priority: 0.9,
   },
   {
     url: `${SITE.url}/pricing`,
-    lastModified: PAGES_UPDATED,
+    lastModified: pageUpdated("/pricing"),
     /* Weekly, not monthly: the figures are administrator-editable without a
        deployment, so this page can change on a day nothing else does. */
     changeFrequency: "weekly",
@@ -41,19 +36,25 @@ const sitemapEntries = (): MetadataRoute.Sitemap => [
   },
   {
     url: `${SITE.url}/start-project`,
-    lastModified: PAGES_UPDATED,
+    lastModified: pageUpdated("/start-project"),
     changeFrequency: "monthly",
     priority: 0.9,
   },
   {
+    url: `${SITE.url}/contact`,
+    lastModified: pageUpdated("/contact"),
+    changeFrequency: "yearly",
+    priority: 0.7,
+  },
+  {
     url: `${SITE.url}/sitemap`,
-    lastModified: PAGES_UPDATED,
+    lastModified: pageUpdated("/sitemap"),
     changeFrequency: "monthly",
     priority: 0.4,
   },
   ...SERVICE_LIST.map((service) => ({
     url: `${SITE.url}/services/${service.slug}`,
-    lastModified: PAGES_UPDATED,
+    lastModified: pageUpdated(`/services/${service.slug}`),
     changeFrequency: "monthly" as const,
     priority: 0.8,
   })),
@@ -61,7 +62,7 @@ const sitemapEntries = (): MetadataRoute.Sitemap => [
     url: `${SITE.url}/blogs`,
     lastModified: POSTS.reduce(
       (latest, post) =>
-        new Date(post.date) > latest ? new Date(post.date) : latest,
+        postModified(post) > latest ? postModified(post) : latest,
       new Date(0),
     ),
     changeFrequency: "weekly",
@@ -69,7 +70,7 @@ const sitemapEntries = (): MetadataRoute.Sitemap => [
   },
   ...POSTS.map((post) => ({
     url: `${SITE.url}/blogs/${post.slug}`,
-    lastModified: new Date(post.date),
+    lastModified: postModified(post),
     changeFrequency: "yearly" as const,
     priority: 0.6,
   })),
