@@ -59,6 +59,7 @@ test("catalog contains every public page and no private route", () => {
     "/pricing",
     "/blogs",
     "/start-project",
+    "/contact",
     "/services/identity",
     "/services/digital",
     "/blogs/first-post",

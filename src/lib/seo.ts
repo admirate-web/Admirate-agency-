@@ -132,7 +132,7 @@ export const NAP_HTML = `${SITE.area}, ${SITE.city} · <a href="${telHref}">${SI
  * No colours or sizing: each host rail already styles its own anchors, and this
  * inherits so it reads as part of the line it sits in rather than a graft.
  */
-export const LEGAL_HTML = `<a href="/blogs">Blogs</a> · <a href="/privacy-policy">Privacy Policy</a> · <a href="/terms">Terms</a> · <a href="/sitemap">Sitemap</a>`;
+export const LEGAL_HTML = `<a href="/blogs">Blogs</a> · <a href="/contact">Contact</a> · <a href="/privacy-policy">Privacy Policy</a> · <a href="/terms">Terms</a> · <a href="/sitemap">Sitemap</a>`;
 
 type PageMetaArgs = {
   /** Page title, without the "| ADMIRATE" suffix — the template adds it. */

@@ -226,6 +226,7 @@ test("llms.txt publishes the complete public site guide as Markdown", async () =
     "https://admirate.in/pricing",
     "https://admirate.in/blogs",
     "https://admirate.in/start-project",
+    "https://admirate.in/contact",
     "https://admirate.in/services/identity",
     "https://admirate.in/services/design",
     "https://admirate.in/services/social-media",

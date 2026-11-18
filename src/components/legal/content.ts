@@ -146,7 +146,7 @@ export const legalHtml = (doc: LegalDoc) => `
   <div class="grid-bg" aria-hidden="true"></div>
   <div class="glow" aria-hidden="true"></div>
   <div class="lgwrap">
-    <div class="lgeb">LEGAL</div>
+    <div class="lgeb">${esc(doc.eyebrow ?? "LEGAL")}</div>
     <h1>${esc(doc.title)}</h1>
     <p class="lgintro">${inline(doc.intro)}</p>
     <p class="lgupdated">Last updated <time datetime="${esc(doc.updated)}">${fmtDate(doc.updated)}</time></p>

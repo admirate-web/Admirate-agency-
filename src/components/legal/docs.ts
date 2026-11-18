@@ -23,6 +23,14 @@ export type LegalSection = { h: string; body: LegalBlock[] };
 
 export type LegalDoc = {
   slug: string;
+  /**
+   * The small label above the <h1>. Defaults to "LEGAL".
+   *
+   * It exists because /contact renders through this same shell — a short,
+   * unillustrated page of numbered sections is exactly what a contact page is
+   * — and a contact page labelled "LEGAL" would be wrong.
+   */
+  eyebrow?: string;
   /** The <h1>. */
   title: string;
   /** The <title>, without the "| ADMIRATE" suffix — pageMeta adds it. */
